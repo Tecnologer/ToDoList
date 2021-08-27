@@ -11,7 +11,7 @@ package todolist.modelos;
  */
 public class Tarea {
     private String descripcion;
-    private boolean estaCompletada;     
+    private boolean estaCompletada;
 
     public Tarea(String descripcion) {
         this.descripcion = descripcion;
@@ -31,11 +31,15 @@ public class Tarea {
         this.descripcion = descripcion;
     }
 
-    public boolean isEstatus() {
+    public boolean estaCompleta() {
         return estaCompletada;
     }
 
-    public void setEstatus(boolean estatus) {
-        this.estaCompletada = estatus;
+    public void marcarCompletada() {
+        this.estaCompletada = true;
+    }
+    
+    public void marcarIncompleta() {
+        this.estaCompletada = false;
     }
 }
