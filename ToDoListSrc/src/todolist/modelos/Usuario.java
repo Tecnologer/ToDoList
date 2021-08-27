@@ -44,13 +44,24 @@ public class Usuario {
      * 
      * usuario.addTarea(tarea, tarea2, tarea3);
      */
-    public void addTarea(Tarea ...tareas) {        
+    public void addTarea(Tarea ...tareas) throws Exception {
         for(Tarea tarea : tareas){
+            if(getTareaPorDesc(tarea.getDescripcion()) != null ) {
+                throw new Exception(String.format("la tarea \"%s\" ya existe", tarea.getDescripcion()));
+            }
+            
             this.tareas.add(tarea);
         }
     }
     
     public Tarea getTareaPorDesc(String descripcion) {
+        /*
+            - buscar tarea con descripcion que coincida con la descripcion del argumento
+                - recorremos las tareas del usuario (this.tareas)
+                    - si la descripcion de la tarea es igual a la descripcion del argumento, retornamos tarea
+                    - si no, avanzamos a la siguiente tarea
+                - si no encontramos ninguna tarea, retornamos null
+        */
         for(Tarea tarea : this.tareas){            
             if(tarea.getDescripcion().equals(descripcion)){
                 return tarea;
@@ -58,5 +69,20 @@ public class Usuario {
         }
         
         return null;
+    }
+    
+    /* completar tarea
+        - buscar tarea por descripcion
+        - si la tarea existe, la marcamos completada
+        - si no existe, lanzamos una excepcion
+    */
+    public void completarTarea(String descripcion) throws Exception {
+        Tarea tarea = getTareaPorDesc(descripcion);
+        if(tarea != null) {
+            tarea.marcarCompletada();
+        }else{
+            //la tarea "tarea 1" no existe
+            throw new Exception(String.format("la tarea \"%s\" no existe", descripcion));
+        }
     }
 }
