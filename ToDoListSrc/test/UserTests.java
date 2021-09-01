@@ -27,9 +27,9 @@ public class UserTests {
         usuario.addTarea(tarea1, tarea2);
         //todo: guardar en db
         
-       // assertThrows(Exception.class, () -> {
-           // usuario.addTarea(tarea3);
-        //});
+        assertThrows(Exception.class, () -> {
+            usuario.addTarea(tarea3);
+        });
         
         assertEquals(2, usuario.getTareas().size());
         assertNotNull(usuario.getTareaPorDesc("tarea 1"));
