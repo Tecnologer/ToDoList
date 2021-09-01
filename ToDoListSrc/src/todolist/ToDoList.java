@@ -5,6 +5,7 @@
  */
 package todolist;
 
+import java.util.Date;
 import java.util.Scanner;
 import todolist.modelos.Tarea;
 import todolist.modelos.Usuario;
@@ -14,34 +15,37 @@ import todolist.modelos.Usuario;
  * @author tecnologer
  */
 public class ToDoList {
-    
+
+    private static Date fecha = new Date();
+
     private static Scanner keyboard = new Scanner(System.in);
-    
+
     private static Usuario usuario;
+
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+
         String nombreUsuario = leerTeclado("Nombre de usuario: ");
-        usuario = new Usuario(nombreUsuario);
-        
+        usuario = new Usuario(nombreUsuario, 1);
+
         Integer opcion = 0;
-        do{
-            try{
-                print("\nOpciones: ", 
+        do {
+            try {
+                print("\nOpciones: ",
                         "\t1. Agregar tarea",
                         "\t2. Ver tareas",
                         "\t3. Completar tarea",
                         "\t4. Salir",
                         "\n"
-                 );
+                );
                 opcion = leerNumero("Elije una opcion:");
-            }
-            catch(Exception e){                
+            } catch (Exception e) {
                 opcion = 0;
             }
-            
-            switch(opcion){
+
+            switch (opcion) {
                 case 1: //agregar tarea               
                     agregarTarea();
                     break;
@@ -58,84 +62,82 @@ public class ToDoList {
                 default:
                     print("Opcion no valida, intenta de nuevo.");
             }
-        }            
-        while(opcion != 4);
-        
-        
+        } while (opcion != 4);
+
     }
-    
-    private static String leerTeclado(String mensaje) {        
+
+    private static String leerTeclado(String mensaje) {
         print(mensaje);
         System.out.print("> ");
         return keyboard.nextLine();
     }
-    
-    private static Integer leerNumero(String mensaje){
+
+    private static Integer leerNumero(String mensaje) {
         String input = leerTeclado(mensaje);
         return Integer.parseInt(input);
     }
-    
-    public static void print(String ...mensajes){
-        for(String mensaje : mensajes)
+
+    public static void print(String... mensajes) {
+        for (String mensaje : mensajes) {
             System.out.println(mensaje);
+        }
     }
-    
-    public static void printf(String format, Object... args){
+
+    public static void printf(String format, Object... args) {
         print(String.format(format, args));
     }
-    
-    private static void agregarTarea(){
-         /*
+
+    private static void agregarTarea() {
+        /*
             - leer del teclado la descripcion de la terea
             - si no esta vacia:
                 - creamos una instancia de la tarea
             - si esta vacia:
                 - mostramos mensaje de error
                 - pedimos que ingrese de nuevo la descripcion
-        */
-        try{
+         */
+        try {
             String descripcion = "";
-            while(descripcion == ""){
+            while (descripcion == "") {
                 descripcion = leerTeclado("Ingresar descripcion");
                 descripcion = descripcion.trim();
-                
-                if(descripcion == ""){
+
+                if (descripcion == "") {
                     print("Descripcion no valida, intenta de nuevo.");
                 }
             }
-            
-            
-            Tarea tarea = new Tarea(descripcion);
+
+            Tarea tarea = new Tarea(descripcion, usuario.getID(), fecha);
             usuario.addTarea(tarea);
-            
+
             printf("Tarea \"%s\" agregada correctamente", tarea.getDescripcion());
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             print("Error desconocido: ", e.getMessage());
         }
     }
-    
+
     private static void verTareas() {
         /*
         - obtener tareas de usuario
         - recorrer lista de tareas
         - imprimir la descripcion de la tarea y su estatus
-        */
-        
-        for(Tarea tarea : usuario.getTareas()){
-            String status = tarea.estaCompleta() ? "completa":"incompleta";
+         */
+
+        for (Tarea tarea : usuario.getTareas()) {
+            String status = tarea.estaCompleta() ? "completa" : "incompleta";
             
-            printf("%s - (%s)", tarea.getDescripcion(), status);
+            
+            printf("Nombre: %s - Estado: (%s) - Id: %s - Fecha Inicio: %s - Fecha Finalizacion: %s", tarea.getDescripcion(), status, tarea.getIDUsuario(), tarea.getFechaInicio(), tarea.getFechaFinalizacion());
+
         }
     }
-    
-    private static void completarTarea(){
-        try{
-            String descripcion = leerTeclado("Tarea a completar");            
-            usuario.completarTarea(descripcion);
+
+    private static void completarTarea() {
+        try {
+            String descripcion = leerTeclado("Tarea a completar");
+            usuario.completarTarea(descripcion,fecha);
             printf("\"%s\" fue completada correctamente", descripcion);
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             print(e.getMessage());
         }
     }

@@ -5,17 +5,49 @@
  */
 package todolist.modelos;
 
+import java.util.Date;
+
 /**
  *
  * @author tecnologer
  */
 public class Tarea {
+    private int IDUsuario;
     private String descripcion;
     private boolean estaCompletada;
+    private Date fechaInicio;
+    private Date fechaFinalizacion;
+    
 
-    public Tarea(String descripcion) {
+    public Tarea(String descripcion, int idUsuario,Date fechaInicio) {
         this.descripcion = descripcion;
+        this.IDUsuario=idUsuario;
+        this.fechaInicio=fechaInicio;
         this.estaCompletada = false;
+    }
+
+    public int getIDUsuario() {
+        return IDUsuario;
+    }
+
+    public void setIDUsuario(int IDUsuario) {
+        this.IDUsuario = IDUsuario;
+    }
+
+    public Date getFechaInicio() {
+        return fechaInicio;
+    }
+
+    public void setFechaInicio(Date fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+    public Date getFechaFinalizacion() {
+        return fechaFinalizacion;
+    }
+
+    public void setFechaFinalizacion(Date fechaFinalizacion) {
+        this.fechaFinalizacion = fechaFinalizacion;
     }
     
     public Tarea() {
