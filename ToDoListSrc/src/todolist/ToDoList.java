@@ -5,6 +5,11 @@
  */
 package todolist;
 
+<<<<<<< Updated upstream
+=======
+import java.time.OffsetDateTime;
+import java.util.Date;
+>>>>>>> Stashed changes
 import java.util.Scanner;
 import todolist.modelos.Tarea;
 import todolist.modelos.Usuario;
@@ -14,7 +19,13 @@ import todolist.modelos.Usuario;
  * @author tecnologer
  */
 public class ToDoList {
+<<<<<<< Updated upstream
     
+=======
+
+    private static OffsetDateTime fecha;
+
+>>>>>>> Stashed changes
     private static Scanner keyboard = new Scanner(System.in);
     
     private static Usuario usuario;
@@ -125,7 +136,12 @@ public class ToDoList {
         for(Tarea tarea : usuario.getTareas()){
             String status = tarea.estaCompleta() ? "completa":"incompleta";
             
+<<<<<<< Updated upstream
             printf("%s - (%s)", tarea.getDescripcion(), status);
+=======
+            printf("Nombre: %s - Estado: (%s) - Id: %s - Fecha Inicio: %s - Fecha Finalizacion: %s", tarea.getDescripcion(), status, tarea.getUsuarioID(), tarea.getFechaInicio(), tarea.getFechaFinalizacion());
+
+>>>>>>> Stashed changes
         }
     }
     

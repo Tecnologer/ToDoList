@@ -5,6 +5,7 @@
  */
 package todolist.modelos;
 
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 
 /**
@@ -75,8 +76,13 @@ public class Usuario {
         - buscar tarea por descripcion
         - si la tarea existe, la marcamos completada
         - si no existe, lanzamos una excepcion
+<<<<<<< Updated upstream
     */
     public void completarTarea(String descripcion) throws Exception {
+=======
+     */
+    public void completarTarea(String descripcion,OffsetDateTime fechaFinalizacion) throws Exception {
+>>>>>>> Stashed changes
         Tarea tarea = getTareaPorDesc(descripcion);
         if(tarea != null) {
             tarea.marcarCompletada();

@@ -20,11 +20,11 @@ public class UserTests {
     
     @Test
     public void addTareasUsersTests() throws Exception {
-        Usuario usuario = new Usuario("oscar");
+        /*Usuario usuario = new Usuario("oscar");
         Tarea tarea1 = new Tarea("tarea 1");
         Tarea tarea2 = new Tarea("tarea 2");
         Tarea tarea3 = new Tarea("tarea 1");
-        usuario.addTarea(tarea1, tarea2);
+        usuario.addTarea(tarea1, tarea2);*/
         //todo: guardar en db
         
         assertThrows(Exception.class, () -> {
