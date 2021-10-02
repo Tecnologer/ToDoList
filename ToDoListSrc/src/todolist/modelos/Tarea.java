@@ -5,23 +5,57 @@
  */
 package todolist.modelos;
 
+import java.time.OffsetDateTime;
+
 /**
  *
  * @author tecnologer
  */
+
 public class Tarea {
+
+    private int ID;
+    private int idUsuario;
     private String descripcion;
-    private boolean estaCompletada;
+    private boolean status;
+    private OffsetDateTime fechaCreacion;
+    private OffsetDateTime fechaCompletada;
+
+    public Tarea(int ID, int idUsuario, String descripcion, boolean status, OffsetDateTime fechaCreacion, OffsetDateTime fechaCompletada) {
+        this.ID = ID;
+        this.idUsuario = idUsuario;
+        this.descripcion = descripcion;
+        this.status = status;
+        this.fechaCreacion = fechaCreacion;
+        this.fechaCompletada = fechaCompletada;
+    }
 
     public Tarea(String descripcion) {
         this.descripcion = descripcion;
-        this.estaCompletada = false;
+        this.status = false;
     }
-    
+
     public Tarea() {
         this.descripcion = "";
-        this.estaCompletada = false;
+        this.status = false;
     }
+
+    public int getID() {
+        return ID;
+    }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public OffsetDateTime getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public OffsetDateTime getFechaCompletada() {
+        return fechaCompletada;
+    }
+    
 
     public String getDescripcion() {
         return descripcion;
@@ -32,14 +66,14 @@ public class Tarea {
     }
 
     public boolean estaCompleta() {
-        return estaCompletada;
+        return status;
     }
 
     public void marcarCompletada() {
-        this.estaCompletada = true;
+        this.status = true;
     }
-    
+
     public void marcarIncompleta() {
-        this.estaCompletada = false;
+        this.status = false;
     }
 }

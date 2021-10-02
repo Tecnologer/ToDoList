@@ -12,6 +12,7 @@ import java.util.ArrayList;
  * @author tecnologer
  */
 public class Usuario {
+    private int ID;
     private String nombre;
     private ArrayList<Tarea> tareas; 
 
@@ -19,7 +20,15 @@ public class Usuario {
         this.nombre = nombre;
         this.tareas = new ArrayList<Tarea>();
     }
+    public Usuario(int ID,String nombre){
+        this.nombre = nombre;
+        this.ID=ID;
+        this.tareas = new ArrayList<Tarea>();
+    }
     
+     public int getID() {
+        return ID;
+    }
     public String getNombre() {
         return nombre;
     }
