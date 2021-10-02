@@ -31,11 +31,13 @@ public class Tarea {
     }
 
     public Tarea(String descripcion) {
+        this.fechaCreacion=OffsetDateTime.now();
         this.descripcion = descripcion;
         this.status = false;
     }
 
     public Tarea() {
+        this.fechaCreacion=OffsetDateTime.now();
         this.descripcion = "";
         this.status = false;
     }
