@@ -72,10 +72,14 @@ public class Tarea {
     }
 
     public void marcarCompletada() {
+        this.fechaCompletada=OffsetDateTime.now();
         this.status = true;
+        
+        
     }
 
     public void marcarIncompleta() {
+        this.fechaCompletada=null;
         this.status = false;
     }
 }
