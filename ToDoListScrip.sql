@@ -1,3 +1,5 @@
+create database ToDoList;
+
 create table Usuarios(ID int not null, 
 			Nombre citext not null unique, 
 			PRIMARY KEY(ID));
